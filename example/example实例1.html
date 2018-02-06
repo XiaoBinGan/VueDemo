@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example实例1</title>
+    <script src="../assets/js/vue.js"></script>
+    <script src="../assets/js/jquery-1.12.4.js"></script>
+    <!--在vue当中-->
+</head>
+
+<body>
+    <h1>example实例1</h1>
+    <hr>
+    <div id="app">
+        <button @click="add">{{num}}</button>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: '点击增加'
+            },
+            mounted:function(){//外部引入框架方法需要mounted挂载才能实现
+                $('#app').html('我是外部引入的jquery插件').css('color','green')
+            },
+            methods:{
+                add:function(){
+                    console.log('add方法成功在外部调用啦')
+                }
+            }
+        
+        })
+        app.add();//app相当于一个vue的实例app.方法名=调用了methods当中的方法
+    </script>
+
+
+
+</body>
+
+</html>

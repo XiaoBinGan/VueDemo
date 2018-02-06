@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>propsData</h1>
+    <hr>
+    <div id="app">
+
+        <p> {{newPice}}
+            <!--手东插值的方式挂载再在标签当中-->
+        </p>
+        <ul>
+            <li v-for='item in newlist'>{{item.title}}{{item.data}}</li>
+        </ul>
+
+
+    </div>
+    <script>
+        var List = [
+        { title:"qwertyuiop", data: 1},
+        { title:"qwertyuiop", data: 2},
+        { title:"qwertyuiop", data: 3},
+        { title:"qwertyuiop", data: 4},
+        { title:"qwertyuiop", data: 5}
+        ]
+           
+           
+     
+        var app = new Vue({
+            el: '#app',
+            data: {
+                pice: 100, //原始数据的出处
+                List:List//将返回数据放到数据源中
+            },
+            computed: { //计算后的内容在computed当中显示
+                newPice: function () { //插值以函数的方式申明
+                    return this.pice = '$' + this.pice + '元'
+                },
+                newlist:function(){
+                    return this.List.reverse();//利用数组的原生方式来反转数组
+                }
+            }
+
+
+
+        })
+    </script>
+</body>
+
+</html>

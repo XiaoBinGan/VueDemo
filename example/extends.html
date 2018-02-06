@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        {{num}}<!--下面设置了delimiters原来的插值格式{{}}不起作用这是为了防止更原想的格式冲突-->
+        !{num}<!--新的插值格式需和delimiers后面的数组中的定义的一样才能正确的插入-->
+        <button @click="add">点击增加</button>
+    </div>
+    <script >
+
+        var extend={
+            updated:function(){
+                console.log('我是扩展的选项')
+            }
+        }
+
+
+
+
+
+
+        var app= new Vue({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    console.log('我是原生的方法')
+                    this.num++
+                }
+            },
+            extends:extend,//这里只能更上面申明的对象，和mixins不同的地方则是mixins后面跟的是数
+            delimiters:['!{','}']//自定义的插值格式delimiters:['前面的格式','后面的格式'];
+        })
+
+
+
+    </script>
+</body>
+</html>

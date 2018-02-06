@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>watch功能的实现</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>watch功能的实现</h1>
+    <hr>
+    <div id="app">
+        <p>{{weather}}</p>
+        <p>{{suggest}}</p>
+        <p>
+            <button @click='add'>点击温度升高</button>
+            <button @click='minus'>点击温度下降</button>
+        </p>
+    </div>
+
+
+
+
+    <script>
+        var suggest = ['短袖短裤','长袖长裤','棉衣羽绒服']
+        var app = new Vue({
+            el: '#app',
+            data: {
+                weather: 28,
+                suggest: '建议穿：长裙短袖'
+            },
+            methods: {
+                add: function () {
+                    return this.weather += 5;
+                },
+                minus: function () {
+                    return this.weather -= 5;
+                }
+            },
+            //watch:{
+            //    weather:function(newVal,oldVal){
+            //        if(newVal>30){
+            //            this.suggest='短袖短裤'
+            //        }else if(newVal<26&&newVal>0){
+            //            this.suggest='长袖长裤'
+            //        }else{
+            //            this.suggest='棉衣羽绒服'
+            //        }
+            //    }
+            //}
+
+        })
+
+
+
+        app.$watch('weather', function (newVal, oldVal) { //构造器外使用watch方法 app.$watch(监听的对象，function(newVal,oldVal){代码块})
+                if(newVal>30){//newVal新的值    oldVal是旧的值
+                    this.suggest=suggest[0];//让data中的选项=数组中的选项模拟后台返回的数据
+                }else if (newVal<26&&newVal>0){
+                    this.suggest=suggest[1];
+                }else{
+                    this.suggest=suggest[2]
+                }
+        })
+    </script>
+</body>
+
+</html>

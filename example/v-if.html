@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>helloworld</h1>
+    <hr>
+    <div id="app">
+                <div v-show="islogin">你好世界</div>  <!--布尔值true、false改变的是元素的dislpay-->
+                <div v-if="islogin">你好张二蛋</div>    <!--布尔值true、时显示这句话-->                
+                <div v-else="islogin">hellow world</div>  <!--布尔值false、时显示这句话-->
+    </div>
+    <script>  
+        var app=new Vue({
+            el:'#app',
+            data:{
+                islogin:true   //判断条件
+            }
+        })
+    </script>
+</body>
+</html>

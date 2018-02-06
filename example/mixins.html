@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        {{num}}
+        <button @click="add">点击增加</button>
+    </div>
+    <script>
+        var mixi = {//外部申明的容器
+            updated: function () { //生命周期updated当发什么改变的时候触发
+                console.log('我是局部的混入的我第三执行3')
+            }
+        }
+        var mix = {//外部申明的容器
+            created: function () { //生命周期created当创建的额的时候触发
+                console.log('我是混入的创建我最先执行1')
+            }
+        }
+
+        Vue.mixin({//全局的混入的Vue的首字母得大写全局的语法格式mixin不加s:Vue.mixin({created:function(){}})
+            updated:function(){
+                console.log('我是全局的混入我最先执行2')
+            }
+        })
+
+
+
+
+
+
+
+
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                num: 1
+            },
+            methods: {
+                add: function () {
+                    this.num++
+                }
+            },
+            updated: function () {
+                console.log('我是原生的updated我最后执行4')
+            },
+            mixins: [mixi,mix]//或如的固定格式mixins:[混入的申明1，混入的申明2，混入的申明3]以数组的方式挂载在mixins上
+        })
+    </script>
+
+
+
+</body>
+
+</html>

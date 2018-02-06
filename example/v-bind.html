@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <h1>bind实例</h1>
+       <p><img v-bind:src="imgSrc" alt="" width="200"></p> 
+       <p><a :href="aHref">点击跳转百度</a></p> <!--v-bind可以用:来代替-->
+       <div v-bind:class="class_A">1、绑定class</div>    <!--用data中的元素来进行绑定-->
+       <div v-bind:class="{classA:isok}">2、绑定class中的判断</div>  <!--如果isok为true的那就显示classA中的样式-->
+       <div v-bind:class="{classB:isok}"> 3、绑定class中的判断</div>  <!--如果isok为true的那就显示classB中的样式-->
+       <div v-bind:class="[class_A,class_B]"> 4、绑定class中的数组</div>  <!--给div绑定一个数组的中的两个类-->
+       <div v-bind:class="isok?class_A:class_B"> 5、绑定用三元表达式来判断class</div>  <!--用isok的对错来确定哪个class类生效是data中的哪一个-->
+       <div v-bind:style="{color:col,fontSize:font}">6、绑定style来改变样式</div>
+       <input type="checkbox" id="ck" value="点击切换" v-model="isok">
+       <label for="ck">点击切换={{isok}}</label>
+    </div>
+
+
+    <style>
+        .classA{
+                color:red;
+        }
+        .classB{
+            color: green;
+            font-weight: 700;
+        }
+    </style>
+
+
+
+
+
+    <script>
+            var app=new Vue({
+            el:'#app',
+            data:{
+                imgSrc:'../assets/images/15.png',
+                aHref:'http://www.baidu.com',
+                class_A:'classA',
+                class_B:'classB',
+                col:"red",
+                font:"150%",
+                isok:true
+            }
+            });
+
+    </script>
+</body>
+
+</html>

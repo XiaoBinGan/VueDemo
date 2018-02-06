@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>slot实例</h1>
+    <hr>
+    <div id="app">
+        <wujiahao><!--自定义标签-->
+            <span slot="url">{{haoge.url}}</span>
+            <!--在标签上的插入slot属性slot=data中的属性名  
+                内容以插值的方式插入-->
+            <span slot="name">{{haoge.name}}</span>
+            <span slot="job">{{haoge.job}}</span>
+        </wujiahao>
+    </div>
+    <template id="tpl">
+        <div><!--在使用slot时候需要最外部加上标签包裹-->
+            <p>博客地址: <slot name="url"><!--这里的slot是双标签  name值=data内部你想要插入的值的键--></slot> </p> 
+            <p>博主名称: <slot name="name"><!--这里的slot是双标签  name值=data内部你想要插入的值的键--></slot> </p> 
+            <p>博主工作: <slot name="job"><!--这里的slot是双标签  name值=data内部你想要插入的值的键--></slot> </p> 
+        </div>
+        
+    </template>
+    <script>
+        var tpl={//将外部定义好的模版定义成模版对象的格式
+            template:'#tpl'//固定个格式template:'选择器'
+        }
+        var app= new Vue({
+            el:'#app',
+            data:{
+                haoge:{
+                    url:'www.haoge.com',
+                    name:'吴佳浩',
+                    job:'engineer'
+                }
+            },
+            components:{//自定义的组件
+                "wujiahao":tpl//自定义的组件名称：包裹模版的对象申明
+            }
+        })
+
+    </script>
+</body>
+</html>

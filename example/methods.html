@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>methonds功能</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>methods</h1>
+    <div id="app">
+        {{a}}
+        <button @click='add(2,$event)'>点击增加</button><!--$event当中包括了很多方法-->
+        <btn @click.native='add(5)'>自定义组件</btn>
+    </div>
+        <!--外部定调用methods当中方法 语法：构造器的id.methods中的方法名-->
+        <button onclick="app.add(10)">外部调用</button>
+
+    <script>
+        var  btn={//自定义构造器的使用native使用原生的方法
+        template:`<button>点解添加</button>`
+        
+        } 
+            var app=new Vue({
+                el:'#app',
+                data:{
+                    a:1
+                },
+                components:{//自定义组件的挂载
+                    "btn":btn//"自定义组件名"：存储模版的变量名
+                },
+                methods:{
+                    add:function(num,event){
+                        if(num){
+                            this.a+=num
+                        }else{
+                            this.a++    
+                        }
+                        console.log(event);//打印event当中的所以属性的 在交互性比较高的时候会用
+                    }
+                
+                } 
+            });
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>跑马灯案例</h1>
+    <hr>
+    <div id="app">
+
+        <p v-modle='message'>{{message}}</p>
+        <p><button @click="gun">开始</button><button @click="stop">停止</button></p>
+       
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: '新年大吉，今晚吃鸡，大吉大利',
+                timeId:''
+            },
+            methods: {
+                gun() { //es6的语法省去了function  语法格式 ele(){}
+                    var that=this;
+                    this.timeId=setInterval(function(){
+                        that.message=that.message.slice(1)+that.message.slice(0,1);
+                    },300)
+                },
+                stop(){
+                    clearInterval(this.timeId);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

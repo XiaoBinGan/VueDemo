@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue自定义的组件、自定义属性的挂载呢操作</h1>
+    <hr>
+    <div id="app">
+            <wujiahao v-bind:here="message" ></wujiahao><!--将自定义的属性的手动申明在标签上-->
+            
+    </div>
+
+    
+
+
+    <script>
+            var app=new Vue({
+                    el:'#app',
+                    data:{
+                        message:'开个小玩耍'//以后更多的是使用数据绑定这方式的来工作
+                    },
+                    components:{//自定义的组件
+                        "wujiahao":{//自定义组件的挂载
+                            template:`<h1 style="color:green">wujiahao{{here}}</h1>`,//将自定属性的嵌入模版中
+                            props:['here']//将自定义的属性挂载在选项上   就像 data 一样，prop 也可以在模板中使用
+                        }
+                    }
+            });
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

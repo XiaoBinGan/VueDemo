@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .brand-list {
+            border: 1px solid rgb(0, 0, 0);
+        }
+
+        .brand-list td,
+        th {
+            width: 150px;
+            border: 1px solid black;
+            text-align: center;
+        }
+    </style>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>品牌管理案例</h1>
+    <hr>
+    <div id="app">
+        <table>
+            <tbody>
+                <tr>
+                    <td>请输入品牌名称</td>
+                    <td>
+                        <input type="text" v-model="brandName">
+                    </td>
+                    <td>
+                        <button @click="add">添加</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>请输入搜索关键字</td>
+                    <td>
+                        <input type="text" @keyup="search($event)" v-model="searchTEXT">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="brand-list">
+            <tbody>
+                <tr>
+                    <th>id</th>
+                    <th>品牌名称</th>
+                    <th>创建时间</th>
+                    <th>操作</th>
+                </tr>
+
+                <tr v-for="(item,index) in list" :key="index">
+                    <td>{{item.id}}</td>
+                    <td>{{item.brandName}}</td>
+                    <td>{{item.ctime}}</td>
+                    <td>
+                        <button @click="del(item.id)">删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                brands: [{
+                        id: 1,
+                        brandName: "BMW",
+                        ctime: new Date
+                    },
+                    {
+                        id: 2,
+                        brandName: "Benz",
+                        ctime: new Date
+                    },
+                    {
+                        id: 3,
+                        brandName: "Audi",
+                        ctime: new Date
+                    },
+                    {
+                        id: 4,
+                        brandName: "布加迪",
+                        ctime: new Date
+                    },
+                    {
+                        id: 5,
+                        brandName: "迈巴赫",
+                        ctime: new Date
+                    }
+                ],
+                brandName: '',
+                searchTEXT: ''
+            },
+            methods: {
+                add() {
+                    let refTel = /\W\S/;
+                    if (refTel.test(this.brandName)) {
+                        var i = this.brands.length > 0 ? this.brands[this.brands.length - 1].id + 1 : 1
+                        var brand = {
+                            id: i,
+                            brandName: this.brandName,
+                            ctime: new Date
+                        }
+                        this.brands.push(brand);
+                    }
+
+                },
+                del(id) {
+                    var temp = this.brands.find(function (v) {
+                        return v.id == id //查找第一个复合条件的元素返回
+                    });
+                    var index = this.brands.indexOf(temp) //获取属性索引
+                    this.brands.splice(index, 1); //找到相对应的索引的位置截取删除
+                },
+                search(event) {//获取到查询的结果
+                    if (this.searchTEXT.trim() == '') {
+                        return this.brands
+                    }
+                    return this.brands.filter((i) => i.brandName.indexOf(this.searchTEXT) > -1)
+                        //ele.filter(item=>符合条件的)返回符合条件的数组
+                }
+            },
+            computed: {
+                list() {
+                    if (this.searchTEXT.trim() == '') {
+                        return this.brands
+                    }
+                    return this.brands.filter(i => i.brandName.indexOf(this.searchTEXT) >-1)      
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

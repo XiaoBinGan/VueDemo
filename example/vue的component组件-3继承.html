@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue的自定义组件的继承</h1>
+    <hr>
+    <div id="app">
+        <wujiahao></wujiahao>    <!--自定义的组件-->
+    </div>
+
+    
+
+
+    <script>
+            var wj={
+                template:`<div>张四蛋</div>`
+            }
+            var wjh={
+                template:`
+                <div>
+                <h1>开个小玩耍</h1>
+                <city></city>    
+                </div>
+                `,
+                components:{
+                    "city":wj//在模版中的自定义组件的中的自定义组件
+                }
+            }
+            var app=new Vue({
+                    el:'#app',
+                    components:{
+                        "wujiahao":wjh
+                    }
+            });
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

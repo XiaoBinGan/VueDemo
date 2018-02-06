@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example实例2methonds</title>
+    <script src="../assets/js/vue.js"></script>
+    <!--在vue当中-->
+</head>
+
+<body>
+    <h1>example实例2methods</h1>
+    <hr>
+    <div id="app">
+        {{num}}
+        <p><button @click="add">点解增加</button></p>
+    </div>
+    <p><button onclick='reduce()'>点击减去</button></p>
+    <p><button onclick='reduceonc()'>点击减去</button></p>
+    <p><button onclick='off()'>点解解绑</button></p>
+    <script>
+        var app=new Vue({
+            el:'#app',
+            data:{
+                num:1
+            },
+            methods:{
+                add:function(){
+                    this.num++
+                }
+            }
+        })
+        app.$on('reduce',function(){//这里是内部绑定的事件固定语法:app.$on('事件名'，function(){执行的代码})
+            console.log('执行了reduce()');
+            this.num--
+        })
+        app.$once('reduceonc',function(){//这里是内部绑定的事件$once只执行一次
+            console.log('只执行一次')
+            this.num--
+        });
+
+
+        function reduce(){//这里按钮调用的事件
+            app.$emit('reduce')//这里调用的是内部的事件app.$emit('内部声明的事件名')
+        }
+        function reduceonc(){
+            app.$emit('reduceonc');
+        }
+        function off(){        //事件解绑
+            app.$off('reduce')//解绑事件app.$off('事件名');
+        }
+
+
+
+    </script>
+
+
+
+</body>
+
+</html>

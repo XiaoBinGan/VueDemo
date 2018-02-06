@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>v-on实例</h1>
+    <hr>
+    <div id="app">
+            比赛得分：{{count}}
+            <br>
+            <button v-on:click="add">点击加分</button><!--事件通过on来绑定事件-->
+            <button @click="subtract">点击减分</button><!--事件通过on来绑定事件可以缩写成@事件名称 -->
+            <p>
+                <input type="text" v-on:keyup.enter='etr' v-model="lose">
+                <!--keyup键盘事件.后面跟的是哪个按键触发  =后面事件处理函数  v-model是vue中的数据源-->
+            </p>
+    </div>
+    <script>  
+            var app=new Vue ({
+                el:"#app",
+                data:{
+                  count:1,
+                  lose:1,
+                },
+                methods:{//methods用来存放方法的容器
+                    add:function(){
+                            this.count++;
+                    },
+                    subtract:function(){
+                        this.count--;
+                    },
+                    etr:function(){
+                        this.count=this.count+(this.lose*1);//注意这里的this.lose需要数据类型的转换不然是字符串的类型
+                    }
+
+                }
+            })
+    </script>
+</body>
+</html>

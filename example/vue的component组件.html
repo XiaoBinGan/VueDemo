@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+
+<body>
+    <h1>Vue模版template</h1>
+    <hr>
+    <div id="app">
+        <wujiahao></wujiahao>    <!--自定义的组件-->
+        <wjh></wjh>
+    </div>
+
+    
+
+
+    <script>
+            Vue.component('wujiahao',{//全局组件||自定义组件的格式Vue.component('自定义组件名',{模版})只能定义一个
+                    template:'<h2 style="color:red">hellow world</h2>'
+            })
+            var app=new Vue({
+                    el:'#app',
+                    components:{//局部组件的定义components{}可以定义多个
+                        'wjh':{//这里必须是字符创否则会报错未定义
+                            template:'<h1 style="color:green">我是局部组件</h1>'
+                        }
+                    }
+            });
+    </script>
+
+
+
+
+
+
+
+</body>
+
+</html>

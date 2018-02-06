@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>选项</title>
+    <script src="../assets/js/vue.js"></script>
+</head>
+<body>
+    <h1>propsData</h1>
+    <hr>
+    <div id="app">
+            <wujiahao><!--自定义的扩展--></wujiahao>
+    </div>
+    <script>  
+        var wjh=Vue.extend({                           //选项的手动挂载固定格式{{键}}                               
+            template:`<h3 style="color:red">{{message}}={{age}}</h3>`,
+            data:function(){
+                return {
+                    message:'浩哥'
+                }
+            },
+            props:['age']//数组的方式存储在props中props:['键']
+        })
+
+        //自定义的选项的传递固定格式{propsData:{键：值}}
+        new wjh({propsData:{age:30}}).$mount('wujiahao');
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>example实例2methonds</title>
+    <script src="../assets/js/vue.js"></script>
+    <!--在vue当中-->
+</head>
+
+<body>
+    <h1>example实例2methods</h1>
+    <hr>
+    <div id="app"></div>
+   
+       <p>  <button onclick='destroy()'>卸载</button>   </p>
+       <p>  <button onclick='reload()'>修改</button>   </p>
+       <p>  <button onclick='tick()'>被修改了类似原生的生命周期updated</button>   </p>
+
+ 
+    <script>
+        var wujiahao = Vue.extend({
+            template: `<h1>{{message}}</h1>`,
+            data: function () {
+                return {
+                    message: 'hellow world'
+                }
+            },
+            destroyed: function () {
+                console.log('destroyed被销毁后')
+            },
+            mounted: function () {
+                console.log('mounted被创建')
+            },
+            updated:function(){
+                console.log('updated当数据被修改了之后')
+            }
+        })
+        var am = new wujiahao().$mount('#app') //手动挂载到app中
+        
+        
+        function destroy() {
+            am.$destroy();//销毁
+        }
+        
+        function reload(){
+            am.$forceUpdate();//刷新
+        }
+
+        function tick(){
+            am.message='hellow Vue';
+            am.$nextTick(function(){//$nextTick类似于原生的updated
+                console.log('数据被更新了之后');
+            })
+        }
+    </script>
+
+
+
+</body>
+
+</html>
